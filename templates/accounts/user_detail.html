@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}User Details - User Management{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center">User Details</h2>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-sm-4 fw-bold">Username:</div>
+                    <div class="col-sm-8">{{ user.username }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-4 fw-bold">Email:</div>
+                    <div class="col-sm-8">{{ user.email }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-4 fw-bold">Phone Number:</div>
+                    <div class="col-sm-8">{{ user.phone_number }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-4 fw-bold">Address:</div>
+                    <div class="col-sm-8">{{ user.address }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-4 fw-bold">Date Joined:</div>
+                    <div class="col-sm-8">{{ user.date_joined }}</div>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="{% url 'user_list' %}" class="btn btn-secondary">Back to List</a>
+                    <a href="{% url 'user_delete' user.pk %}" class="btn btn-danger">Delete User</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
