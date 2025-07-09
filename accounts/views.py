@@ -4,6 +4,9 @@ from django.contrib import messages
 from django.contrib.auth import login
 from .forms import CustomUserCreationForm, UserUpdateForm
 from .models import CustomUser
+import logging
+
+logger = logging.getLogger('accounts')
 
 def home(request):
     return render(request, 'accounts/home.html')
@@ -14,8 +17,11 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            logger.info(f"New user registered: {user.username}")
             messages.success(request, 'Account created successfully!')
             return redirect('home')
+        else:
+            logger.warning(f"Registration form validation failed: {form.errors}")
     else:
         form = CustomUserCreationForm()
     return render(request, 'accounts/register.html', {'form': form})

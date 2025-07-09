@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - User Management{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="display-4">Welcome to User Management</h1>
+    {% if user.is_authenticated %}
+        <p class="lead">Hello, {{ user.username }}!</p>
+        <div class="mt-4">
+            <a href="{% url 'profile' %}" class="btn btn-primary me-2">View Profile</a>
+            <a href="{% url 'user_list' %}" class="btn btn-secondary">View Users</a>
+        </div>
+    {% else %}
+        <p class="lead">Please login or register to get started.</p>
+        <div class="mt-4">
+            <a href="{% url 'login' %}" class="btn btn-primary me-2">Login</a>
+            <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %} 
